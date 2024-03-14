@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Business Trip List</h2>
+    <ul>
+        {% for trip in trips %}
+            <li>
+                <strong>Employee:</strong> {{ trip.employee.name }}<br>
+                <strong>Destination:</strong> {{ trip.destination }}<br>
+                <strong>Start Date:</strong> {{ trip.start_date }}<br>
+                <strong>End Date:</strong> {{ trip.end_date }}<br>
+                <strong>Expenses:</strong>
+                <ul>
+                    {% for expense in trip.expenses.all %}
+                        <li>{{ expense.description }} - ${{ expense.amount }}
+                            (<a href="{% url 'update-expense' expense.pk %}">Edit</a>)
+                            (<a href="{% url 'delete-expense' expense.pk %}">Delete</a>)
+                        </li>
+                    {% endfor %}
+                </ul>
+                <a href="{% url 'add-expense' trip.id %}">Add Expense</a><br>
+                <a href="{% url 'update-trip' trip.pk %}">Edit Trip</a><br>
+                <a href="{% url 'delete-trip' trip.pk %}">Delete Trip</a><br>
+            </li>
+        {% endfor %}
+    </ul>
+
+
+    <a href="{% url 'add-trip' %}">Add New Business Trip</a>
+{% endblock %}

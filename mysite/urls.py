@@ -17,11 +17,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
-from travel_app.views import SignUpView
+from travel_app.views import SignUpView, AddBusinessTrip, BusinessTripList, AddExpenseToTrip, UpdateBusinessTrip, DeleteBusinessTrip, UpdateExpense, DeleteExpense
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('signup/', SignUpView.as_view(), name="signup"),
     path('accounts/', include("django.contrib.auth.urls")),
     path('', TemplateView.as_view(template_name="home.html"), name="home"),
+    path('add-trip/', AddBusinessTrip.as_view(), name='add-trip'),
+    path('trip-list/', BusinessTripList.as_view(), name='trip-list'),
+    path('add-expense/<int:trip_id>/', AddExpenseToTrip.as_view(), name='add-expense'),
+    path('update-trip/<int:pk>/', UpdateBusinessTrip.as_view(), name='update-trip'),
+    path('delete-trip/<int:pk>/', DeleteBusinessTrip.as_view(), name='delete-trip'),
+    path('update-expense/<int:pk>/', UpdateExpense.as_view(), name='update-expense'),
+    path('delete-expense/<int:pk>/', DeleteExpense.as_view(), name='delete-expense'),
 ]

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Add Expense to {{ trip.employee.name }}'s Business Trip</h2>
+    <form method="post" action="{% url 'add-expense' trip.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
+
