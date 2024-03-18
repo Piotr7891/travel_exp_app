@@ -91,18 +91,16 @@ class UpdateBusinessTrip(LoginRequiredMixin, UpdateView):
 
 class DeleteBusinessTrip(LoginRequiredMixin, DeleteView):
     model = BusinessTrip
+    template_name = 'trip_confirm_delete.html'
     success_url = reverse_lazy('trip-list')
 
 class UpdateExpense(LoginRequiredMixin, UpdateView):
     model = Expense
     fields = ['description', 'amount']
     template_name = 'update_expense.html'
+    success_url = reverse_lazy('trip-list')
 
-    def get_success_url(self):
-        return reverse('trip-detail', kwargs={'pk': self.object.business_trip.pk})
 
 class DeleteExpense(LoginRequiredMixin, DeleteView):
     model = Expense
-
-    def get_success_url(self):
-        return reverse('trip-detail', kwargs={'pk': self.object.business_trip.pk})
+    success_url = reverse_lazy('trip-list')

@@ -1,8 +1,17 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-    <head><meta charset="utf-8"></head>
+    <head><meta charset="utf-8">
+    </head>
     <body>
+
+    {% if user.is_authenticated %}
+        <form action="{% url 'logout' %}" method="post" id="logout-form">
+            {% csrf_token %}
+            <button type="submit">Sign Out</button>
+        </form>
+    {% endif %}
+
         <img src="{% static 'travel_app/logo.png' %}" alt="logo">
         {% block content %}{% endblock %}
     </body>

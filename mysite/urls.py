@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
+from django.contrib.auth.views import LogoutView
 from travel_app.views import SignUpView, AddBusinessTrip, BusinessTripList, AddExpenseToTrip, UpdateBusinessTrip, DeleteBusinessTrip, UpdateExpense, DeleteExpense
 
 urlpatterns = [
@@ -31,4 +32,5 @@ urlpatterns = [
     path('delete-trip/<int:pk>/', DeleteBusinessTrip.as_view(), name='delete-trip'),
     path('update-expense/<int:pk>/', UpdateExpense.as_view(), name='update-expense'),
     path('delete-expense/<int:pk>/', DeleteExpense.as_view(), name='delete-expense'),
+    path('logout/', LogoutView.as_view(), name='logout'),
 ]

@@ -6,6 +6,7 @@
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">Submit</button>
+        <a href="{% url 'trip-list' %}" class="btn btn-secondary">Return to Trip List</a>
     </form>
 {% endblock %}
 
