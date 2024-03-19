@@ -71,11 +71,14 @@ class AddExpenseToTrip(LoginRequiredMixin, View):
         if form.is_valid():
             description = form.cleaned_data['description']
             amount = form.cleaned_data['amount']
+            currency = form.cleaned_data['currency']
+
 
             Expense.objects.create(
                 business_trip=trip,
                 description=description,
-                amount=amount
+                amount=amount,
+                currency=currency
             )
 
             return redirect(reverse('trip-list'))
@@ -96,7 +99,7 @@ class DeleteBusinessTrip(LoginRequiredMixin, DeleteView):
 
 class UpdateExpense(LoginRequiredMixin, UpdateView):
     model = Expense
-    fields = ['description', 'amount']
+    fields = ['description', 'amount', 'currency']
     template_name = 'update_expense.html'
     success_url = reverse_lazy('trip-list')
 

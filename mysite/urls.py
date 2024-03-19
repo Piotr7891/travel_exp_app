@@ -33,4 +33,6 @@ urlpatterns = [
     path('update-expense/<int:pk>/', UpdateExpense.as_view(), name='update-expense'),
     path('delete-expense/<int:pk>/', DeleteExpense.as_view(), name='delete-expense'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('contact/', TemplateView.as_view(template_name="contact.html"), name='contact'),
+    path('about/', TemplateView.as_view(template_name="about.html"), name='about'),
 ]

@@ -15,6 +15,17 @@ COUNTRY = (
     ("Hungary", "Hungary")
 )
 
+CURRENCY_CHOICES = (
+    ('USD', 'US Dollar'),
+    ('EUR', 'Euro'),
+    ('GBP', 'British Pound'),
+    ('JPY', 'Japanese Yen'),
+    ('PLN', 'Polish Zlot'),
+    ('HUF', 'Hungarian Forint'),
+    ('CZK', 'Czech Koruna'),
+    ('RON', 'Romanian Leu')
+)
+
 class Employee(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
@@ -35,6 +46,7 @@ class Expense(models.Model):
     business_trip = models.ForeignKey(BusinessTrip, on_delete=models.CASCADE, related_name='expenses')
     description = models.CharField(max_length=255)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
+    currency = models.CharField(max_length=3, choices=CURRENCY_CHOICES)
 
     def __str__(self):
-        return f"{self.description} - ${self.amount}"
+        return f"{self.description} - ${self.amount} {self.currency}"

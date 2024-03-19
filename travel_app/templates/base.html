@@ -14,5 +14,9 @@
 
         <img src="{% static 'travel_app/logo.png' %}" alt="logo">
         {% block content %}{% endblock %}
+
+    <div>
+        <a href="{% url 'contact' %}">Contact</a> | <a href="{% url 'about' %}">About</a>
+    </div>
     </body>
 </html>

@@ -12,7 +12,7 @@
                 <strong>Expenses:</strong>
                 <ul>
                     {% for expense in trip.expenses.all %}
-                        <li>{{ expense.description }} - ${{ expense.amount }}
+                        <li>{{ expense.description }} - ${{ expense.amount }} {{ expense.currency }}
                             (<a href="{% url 'update-expense' expense.pk %}">Edit</a>)
                             (<a href="{% url 'delete-expense' expense.pk %}">Delete</a>)
                         </li>
