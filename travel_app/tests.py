@@ -10,7 +10,7 @@ def test_login_view(client):
     response = client.post(reverse('login'), {'username': 'testuser', 'password': 'password123'})
     assert response.status_code == 200  # Adjust status code as needed
 
-# Add more tests for other views (e.g., logout, password change, password reset)
+
 
 @pytest.mark.django_db
 def test_add_business_trip_view(client):
@@ -19,7 +19,6 @@ def test_add_business_trip_view(client):
     response = client.post(reverse('add-trip'), {'destination': 'New York', 'start_date': '2024-03-20', 'end_date': '2024-03-25'})
     assert response.status_code == 200  # should be 302?
 
-# Add more tests for other views related to business logic
 
 @pytest.mark.django_db
 def test_trip_list_view(client):
