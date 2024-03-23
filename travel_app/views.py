@@ -67,18 +67,20 @@ class AddExpenseToTrip(LoginRequiredMixin, View):
     @method_decorator(login_required)
     def post(self, request, trip_id):
         trip = get_object_or_404(BusinessTrip, pk=trip_id)
-        form = AddExpenseForm(request.POST)
+        form = AddExpenseForm(request.POST, request.FILES)
         if form.is_valid():
             description = form.cleaned_data['description']
             amount = form.cleaned_data['amount']
             currency = form.cleaned_data['currency']
+            expense_image = form.cleaned_data['expense_image']
 
 
             Expense.objects.create(
                 business_trip=trip,
                 description=description,
                 amount=amount,
-                currency=currency
+                currency=currency,
+                expense_image=expense_image
             )
 
             return redirect(reverse('trip-list'))
