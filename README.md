@@ -16,7 +16,7 @@ To run the project locally, follow these steps:
 
 1. Clone the repository:
 
-   git clone https://github.com/your_username/travel_expense_management.git
+   git clone https://github.com/your_username/travel_exp_app.git
 
 2. Install the dependencies:
    
