@@ -99,7 +99,7 @@ class DeleteBusinessTrip(LoginRequiredMixin, DeleteView):
 
 class UpdateExpense(LoginRequiredMixin, UpdateView):
     model = Expense
-    fields = ['description', 'amount', 'currency']
+    fields = ['description', 'amount', 'currency', 'expense_image']
     template_name = 'update_expense.html'
     success_url = reverse_lazy('trip-list')
 

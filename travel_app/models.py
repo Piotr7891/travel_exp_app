@@ -47,6 +47,7 @@ class Expense(models.Model):
     description = models.CharField(max_length=255)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     currency = models.CharField(max_length=3, choices=CURRENCY_CHOICES)
+    expense_image = models.ImageField(null=True, blank=True, upload_to="images/")
 
     def __str__(self):
         return f"{self.description} - ${self.amount} {self.currency}"

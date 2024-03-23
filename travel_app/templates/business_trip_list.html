@@ -13,6 +13,11 @@
                 <ul>
                     {% for expense in trip.expenses.all %}
                         <li>{{ expense.description }} - ${{ expense.amount }} {{ expense.currency }}
+                            {% if expense.expense_image %}
+                                <span style="color: green;">(Receipt uploaded)</span>
+                            {% else %}
+                                <span style="color: red;">(No receipt uploaded)</span>
+                            {% endif %}
                             (<a href="{% url 'update-expense' expense.pk %}">Edit</a>)
                             (<a href="{% url 'delete-expense' expense.pk %}">Delete</a>)
                         </li>

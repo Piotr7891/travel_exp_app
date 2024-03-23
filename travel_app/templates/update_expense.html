@@ -2,10 +2,19 @@
 
 {% block content %}
     <h2>Edit Expense</h2>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Update Expense</button>
-        <a href="{% url 'trip-list' %}" class="btn btn-secondary">Return to Trip List</a>
+        <div style="display: flex;">
+            <div style="flex: 1;">
+                {{ form.as_p }}
+                <button type="submit">Update Expense</button>
+                <a href="{% url 'trip-list' %}" class="btn btn-secondary">Return to Trip List</a>
+            </div>
+            <div style="flex: 1;">
+                {% if form.instance.expense_image %}
+                    <img src="{{ form.instance.expense_image.url }}" alt="Uploaded Image">
+                {% endif %}
+            </div>
+        </div>
     </form>
 {% endblock %}

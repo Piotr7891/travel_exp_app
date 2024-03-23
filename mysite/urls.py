@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from django.views.generic.base import TemplateView
 from django.contrib.auth.views import LogoutView
 from travel_app.views import SignUpView, AddBusinessTrip, BusinessTripList, AddExpenseToTrip, UpdateBusinessTrip, DeleteBusinessTrip, UpdateExpense, DeleteExpense
@@ -35,4 +37,4 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('contact/', TemplateView.as_view(template_name="contact.html"), name='contact'),
     path('about/', TemplateView.as_view(template_name="about.html"), name='about'),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
