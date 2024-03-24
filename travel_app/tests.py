@@ -8,7 +8,7 @@ from .models import Employee, BusinessTrip, Expense
 @pytest.mark.django_db
 def test_login_view(client):
     response = client.post(reverse('login'), {'username': 'testuser', 'password': 'password123'})
-    assert response.status_code == 200  # Adjust status code as needed
+    assert response.status_code == 200
 
 
 
@@ -17,7 +17,7 @@ def test_add_business_trip_view(client):
     user = User.objects.create_user(username='testuser', password='password123')
     client.force_login(user)
     response = client.post(reverse('add-trip'), {'destination': 'New York', 'start_date': '2024-03-20', 'end_date': '2024-03-25'})
-    assert response.status_code == 200  # should be 302?
+    assert response.status_code == 200
 
 
 @pytest.mark.django_db
@@ -25,7 +25,7 @@ def test_trip_list_view(client):
     user = User.objects.create_user(username='testuser', password='password123')
     client.force_login(user)
     response = client.get(reverse('trip-list'))
-    assert response.status_code == 200  # Adjust status code as needed
+    assert response.status_code == 200
     assertTemplateUsed(response, 'business_trip_list.html')
 
 @pytest.mark.django_db
